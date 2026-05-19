@@ -144,7 +144,7 @@
       if (!rafPending) {
         rafPending = true;
         requestAnimationFrame(() => {
-          wm.style.transform = `translateY(${window.scrollY * 0.22}px)`;
+          wm.style.transform = `translateY(calc(-52% + ${window.scrollY * 0.22}px))`;
           rafPending = false;
         });
       }
