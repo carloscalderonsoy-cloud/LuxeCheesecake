@@ -743,15 +743,18 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
    CAROUSEL — reemplaza el grid estático de cuatro columnas
 ============================================================ */
 .carousel {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+  display: grid;
+  grid-template-columns: 52px 1fr 52px;
+  grid-template-rows: auto auto;
+  column-gap: var(--space-3);
+  row-gap: var(--space-5);
+  align-items: center;
 }
-.carousel__viewport {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
+.carousel__btn--prev { grid-column: 1; grid-row: 1; }
+.carousel__viewport  { grid-column: 2; grid-row: 1; overflow: hidden; width: 100%; }
+.carousel__btn--next { grid-column: 3; grid-row: 1; }
+.carousel__controls  { grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center; }
+.carousel__info      { width: 100%; }
 .carousel__track {
   display: flex;
   gap: var(--space-5);
@@ -772,28 +775,16 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
   .carousel__track .card { flex: 0 0 calc(86% - 10px); }
 }
 
-/* Barra inferior: solo counter + barra de progreso */
-.carousel__controls {
-  display: flex;
-  align-items: center;
-}
-.carousel__info { width: 100%; }
-
-/* Flechas — flotantes sobre las fotos */
+/* Flechas laterales — fuera del viewport, en su propia columna de grid */
 .carousel__btn {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  z-index: 10;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(var(--hero-tint), 0.65);
-  backdrop-filter: blur(12px) saturate(120%);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
-  border: 1px solid rgba(212, 185, 140, 0.35);
+  justify-self: center;
+  background: transparent;
+  border: 1px solid var(--hero-rule);
   color: var(--hero-fg);
   cursor: pointer;
   transition:
@@ -804,23 +795,17 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
     transform var(--duration-base) var(--ease-out);
 }
 .carousel__btn svg { display: block; }
-.carousel__btn--prev {
-  left: var(--space-4);
-  transform: translateY(-50%);
-}
-.carousel__btn--next {
-  right: var(--space-4);
-  transform: translateY(-50%);
-}
 .carousel__btn:not(:disabled):hover {
   background: var(--hero-accent);
   border-color: var(--hero-accent);
   color: var(--rosa-50);
-  transform: translateY(-50%) scale(1.08);
+  transform: scale(1.08);
 }
-.carousel__btn:disabled {
-  opacity: 0.18;
-  cursor: default;
+.carousel__btn:disabled { opacity: 0.18; cursor: default; }
+
+@media (max-width: 600px) {
+  .carousel { grid-template-columns: 40px 1fr 40px; column-gap: var(--space-2); }
+  .carousel__btn { width: 40px; height: 40px; }
 }
 
 /* Counter + progress bar */
