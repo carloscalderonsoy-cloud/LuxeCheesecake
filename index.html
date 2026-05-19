@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LUXE Cheesecake — Cheesecake artesanal de Guadalajara</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="hero.css">
+</head>
+<body data-mode="cocoa">
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<header class="nav" data-screen-label="Nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__brand" aria-label="LUXE Cheesecake — inicio">
+      <span class="nav__word">LUXE</span>
+      <span class="nav__caption">· Cheesecake ·</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Principal">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#diario">Diario</a>
+    </nav>
+
+    <div class="nav__actions">
+      <span class="nav__city" aria-hidden="true">
+        <span class="nav__city-dot"></span>
+        Guadalajara
+      </span>
+      <a href="#pedir" class="btn btn--bronze">Pedir <span aria-hidden="true">→</span></a>
+    </div>
+
+    <button class="nav__menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<main class="hero" data-screen-label="Hero">
+
+  <!-- watermark wordmark behind everything -->
+  <div class="hero__watermark" aria-hidden="true">LUXE</div>
+
+  <!-- left rail meta -->
+  <aside class="hero__rail" aria-hidden="true">
+    <span class="hero__rail-num">N° 21 · 2026</span>
+    <span class="hero__rail-line"></span>
+    <span class="hero__rail-label">Edición semana</span>
+  </aside>
+
+  <!-- right rail status -->
+  <aside class="hero__status" aria-hidden="true">
+    <span class="hero__status-dot"></span>
+    <span class="hero__status-text">Pedidos abiertos · cierra viernes 23:59</span>
+  </aside>
+
+  <div class="hero__grid">
+
+    <!-- LEFT — copy -->
+    <div class="hero__copy">
+
+      <p class="eyebrow">
+        <span class="eyebrow__dot">·</span>
+        Edición limitada · Esta semana
+        <span class="eyebrow__dot">·</span>
+      </p>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">Densidad untuosa.</span>
+        <span class="hero__title-line"><em>Equilibrio</em></span>
+        <span class="hero__title-line"><em>templado.</em></span>
+      </h1>
+
+      <p class="hero__lede">
+        Cheesecake artesanal hecho a mano en Guadalajara.
+        Una sola pieza por receta. 48 horas de reposo.
+        Edición distinta cada semana.
+      </p>
+
+      <blockquote class="tasting-note">
+        <p>
+          <em>Notas de aguacate Hass de Michoacán,
+          base de galleta tostada con mantequilla noisette,
+          terminado con nuez pecana caramelizada a mano.</em>
+        </p>
+        <cite>— Cheese Avocado · signature</cite>
+      </blockquote>
+
+      <div class="hero__cta-row">
+        <a href="#catalogo" class="btn btn--primary">
+          Ver el catálogo
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="#eventos" class="btn btn--ghost">
+          Mesas para eventos
+        </a>
+      </div>
+
+      <dl class="hero__specs">
+        <div>
+          <dt>Tamaño</dt>
+          <dd>20 cm · 8 personas</dd>
+        </div>
+        <div>
+          <dt>Desde</dt>
+          <dd class="price"><span class="price__amount">680</span><span class="price__currency">MXN</span></dd>
+        </div>
+        <div>
+          <dt>Entrega</dt>
+          <dd>Sáb · GDL Metro</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- RIGHT — photo -->
+    <figure class="hero__photo">
+      <div class="hero__photo-frame">
+        <img
+          src="assets/cheese-avocado-editorial.jpg"
+          alt="Cheese Avocado: cheesecake artesanal de aguacate con nuez pecana sobre base oscura"
+          fetchpriority="high">
+        <span class="hero__photo-meta">
+          <span class="hero__photo-meta-dot"></span>
+          Pieza 04 / 12
+        </span>
+      </div>
+
+      <figcaption class="hero__photo-caption">
+        <span class="hero__photo-caption-eyebrow">· Pieza signature ·</span>
+        <span class="hero__photo-caption-name"><em>Cheese Avocado</em></span>
+        <span class="hero__photo-caption-by">por Elías González</span>
+      </figcaption>
+
+      <!-- floating tag -->
+      <span class="hero__photo-tag">
+        <span class="hero__photo-tag-num">04</span>
+        <span class="hero__photo-tag-divider"></span>
+        <span class="hero__photo-tag-label">Edición<br>Mayo</span>
+      </span>
+    </figure>
+  </div>
+
+  <!-- bottom rule + scroll cue -->
+  <div class="hero__floor">
+    <div class="hero__floor-lockup">
+      <span class="hero__floor-rule"></span>
+      <span class="hero__floor-mark">·</span>
+      <span class="hero__floor-text">Cheesecake artesanal · Guadalajara · MX</span>
+      <span class="hero__floor-mark">·</span>
+      <span class="hero__floor-rule"></span>
+    </div>
+  </div>
+
+</main>
+
+
+<!-- ============================================================
+     TICKER — tasting notes marquee
+============================================================ -->
+<section class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <!-- repeat content twice for seamless loop -->
+    <div class="ticker__group">
+      <span class="ticker__item"><em>Vainilla bourbon</em> · base speculoos · dulce de leche</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Aguacate Hass</em> · galleta tostada · pecana caramelizada</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Pistache</em> · base de almendra · pecana entera</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Manzana caramelizada</em> · cremoso de queso · merengue suizo</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Limón Persa</em> · galleta cremosa · ralladura fresca</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Tarta vasca</em> · centro fundente · fruta de temporada</span>
+      <span class="ticker__dot">✦</span>
+    </div>
+    <div class="ticker__group" aria-hidden="true">
+      <span class="ticker__item"><em>Vainilla bourbon</em> · base speculoos · dulce de leche</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Aguacate Hass</em> · galleta tostada · pecana caramelizada</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Pistache</em> · base de almendra · pecana entera</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Manzana caramelizada</em> · cremoso de queso · merengue suizo</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Limón Persa</em> · galleta cremosa · ralladura fresca</span>
+      <span class="ticker__dot">✦</span>
+      <span class="ticker__item"><em>Tarta vasca</em> · centro fundente · fruta de temporada</span>
+      <span class="ticker__dot">✦</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ESTA SEMANA — mini gallery to round out the page
+============================================================ -->
+<section class="thisweek" id="catalogo" data-screen-label="Esta semana">
+  <header class="thisweek__head">
+    <span class="thisweek__num" aria-hidden="true">01</span>
+    <p class="eyebrow eyebrow--solo">
+      <span class="eyebrow__dot">·</span>
+      Catálogo · Semana 21
+      <span class="eyebrow__dot">·</span>
+    </p>
+    <h2 class="thisweek__title">
+      Doce piezas.
+      <span class="thisweek__title-cont"><em>Una sola</em><br><em>de cada una.</em></span>
+    </h2>
+  </header>
+
+  <div class="thisweek__grid">
+    <article class="card">
+      <div class="card__img">
+        <img src="assets/avocadito-hand.jpg" alt="Avocadito individual" loading="lazy">
+      </div>
+      <p class="card__cat">· Individual ·</p>
+      <h3 class="card__name"><em>Avocadito</em></h3>
+      <p class="card__note"><em>Aguacate, pecana, galleta tostada — formato porción.</em></p>
+      <div class="card__foot">
+        <span class="price"><span class="price__amount">120</span><span class="price__currency">MXN</span></span>
+        <a href="#" class="card__cta">Pedir →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__img">
+        <img src="assets/pistache.jpg" alt="Cheesecake de pistache con pecana" loading="lazy">
+      </div>
+      <p class="card__cat">· 8 personas ·</p>
+      <h3 class="card__name"><em>Pistache · Pecana</em></h3>
+      <p class="card__note"><em>Crema de pistache, base de almendra, pecana entera caramelizada.</em></p>
+      <div class="card__foot">
+        <span class="price"><span class="price__amount">720</span><span class="price__currency">MXN</span></span>
+        <a href="#" class="card__cta">Pedir →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__img">
+        <img src="assets/merengue-caramelo.jpg" alt="Cheesecake con merengue y caramelo" loading="lazy">
+      </div>
+      <p class="card__cat">· 8 personas ·</p>
+      <h3 class="card__name"><em>Manzana Templada</em></h3>
+      <p class="card__note"><em>Cremoso de queso, manzana caramelizada, merengue suizo y pecana.</em></p>
+      <div class="card__foot">
+        <span class="price"><span class="price__amount">680</span><span class="price__currency">MXN</span></span>
+        <a href="#" class="card__cta">Pedir →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__img">
+        <img src="assets/tarta-vasca.jpg" alt="Tarta vasca con fresa y kiwi" loading="lazy">
+      </div>
+      <p class="card__cat">· 6 personas ·</p>
+      <h3 class="card__name"><em>Vasca de Temporada</em></h3>
+      <p class="card__note"><em>Centro fundente, costra quemada, fruta de temporada glaseada.</em></p>
+      <div class="card__foot">
+        <span class="price"><span class="price__amount">580</span><span class="price__currency">MXN</span></span>
+        <a href="#" class="card__cta">Pedir →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER MINI
+============================================================ -->
+<footer class="footmini">
+  <div class="footmini__lockup">
+    <span class="footmini__word">LUXE</span>
+    <span class="footmini__caption">· CHEESECAKE ARTESANAL ·</span>
+    <span class="footmini__rule"></span>
+  </div>
+  <p class="footmini__sign">
+    Hecho a mano en Guadalajara, Jal. · @luxe.cheesecake
+  </p>
+</footer>
+
+
+<!-- ============================================================
+     TWEAKS PANEL (mode switcher)
+============================================================ -->
+<div id="tweak-root"></div>
+
+<script>
+/* ------------------------------------------------------------
+   EDITMODE — surface switcher (cocoa | blush | wine)
+------------------------------------------------------------ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "mode": "wine"
+}/*EDITMODE-END*/;
+</script>
+
+<script src="hero.js" defer></script>
+
+</body>
+</html>

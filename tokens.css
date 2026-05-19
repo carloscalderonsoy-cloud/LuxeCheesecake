@@ -1,0 +1,185 @@
+/* ============================================================
+   LUXE CHEESECAKE — DESIGN TOKENS v2.0
+   Sistema dual · Nude/Bronce light primary + Cocoa/Wine dark editorial
+   ============================================================
+   Importar antes que cualquier otra hoja:
+   <link rel="stylesheet" href="/tokens.css">
+   ============================================================ */
+
+:root {
+  /* ----------------------------------------------------------
+     01 — COLOR
+     Surface primaria: rosa polvo / nude denso (no pastel)
+     Surface secundaria: cocoa / wine (dark editorial moments)
+     Bridge: bronce + ink (funcionan en ambos modos)
+     ---------------------------------------------------------- */
+
+  /* ROSA / NUDE — surface primaria (evolución del blush logo) */
+  --rosa-50:  #FAF1EC;   /* paper, lightest — fondo claro casi blanco cálido */
+  --rosa-100: #F2DDD0;   /* blush base, fondo signature */
+  --rosa-200: #E5C2AF;   /* nude midtone, cards sobre blush */
+  --rosa-300: #D4A89B;   /* rosa polvo, mid signature */
+  --rosa-400: #B58B74;   /* nude denso, profundidad */
+  --rosa-500: #A66A5A;   /* terracota, acento drama sobre claro */
+
+  /* BRONCE / GOLD — accent firma, bridge entre modos */
+  --bronce-300: #D4B98C;   /* highlight sobre dark */
+  --bronce-400: #C9A574;
+  --bronce-500: #A88A5C;   /* SIGNATURE — matches "CHEESECAKE" del logo */
+  --bronce-600: #8B6F44;   /* hover, focus */
+  --bronce-700: #6E5632;   /* deep, sobre claro */
+
+  /* INK — negro cálido (matches "LUXE" del logo) */
+  --ink-950: #14090A;     /* dark mode surface principal */
+  --ink-900: #1F1410;     /* dark mode cards */
+  --ink-800: #2D1F1A;     /* dark mode elevación */
+  --ink-700: #3D2A22;     /* dark mode bordes */
+  --ink:     #1A1414;     /* TEXTO sobre claro / serif display LUXE */
+  --ink-muted: #5C4036;
+  --ink-faint: #8A6D5F;
+
+  /* WINE — drama editorial */
+  --wine:      #5C1F2A;
+  --wine-deep: #3D1018;
+
+  /* PAPER (texto sobre dark) */
+  --paper:        var(--rosa-50);
+  --paper-muted:  #C9B5A8;
+  --paper-faint:  #8A7868;
+
+  /* Funcionales */
+  --hairline:        rgba(26, 20, 20, 0.14);
+  --hairline-paper:  rgba(250, 241, 236, 0.18);
+  --hairline-bronce: rgba(168, 138, 92, 0.4);
+
+  /* Estados */
+  --success: #4A5D3A;
+  --error:   #8B2A2A;
+  --warning: var(--bronce-600);
+
+  /* ----------------------------------------------------------
+     02 — TIPOGRAFÍA
+     Display: Bodoni Moda — matches LUXE wordmark del logo (Didone)
+     Body:    Manrope — clean, working sans
+     Mono:    JetBrains Mono — specs y precios
+     ---------------------------------------------------------- */
+
+  --font-display: 'Bodoni Moda', 'Playfair Display', 'Times New Roman', Georgia, serif;
+  --font-body:    'Manrope', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Escala fluida */
+  --text-xs:    0.75rem;                            /* 12px */
+  --text-sm:    0.875rem;                           /* 14px */
+  --text-base:  1rem;                               /* 16px */
+  --text-lg:    1.125rem;                           /* 18px */
+  --text-xl:    1.25rem;                            /* 20px */
+  --text-2xl:   1.5rem;                             /* 24px */
+  --text-3xl:   clamp(1.75rem, 4vw, 2.25rem);       /* 28–36 */
+  --text-4xl:   clamp(2rem, 5vw, 3rem);             /* 32–48 */
+  --text-5xl:   clamp(2.5rem, 7vw, 4.5rem);         /* 40–72 */
+  --text-display: clamp(3rem, 14vw, 10rem);         /* 48–160 — wordmark scale */
+
+  /* Leading */
+  --leading-tight:   1.0;
+  --leading-snug:    1.15;
+  --leading-normal:  1.4;
+  --leading-relaxed: 1.6;
+  --leading-loose:   1.85;
+
+  /* Tracking */
+  --tracking-tight: -0.02em;     /* display Bodoni */
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.18em;     /* tracked caps signature (matches "CHEESECAKE ARTESANAL") */
+  --tracking-caps-tight: 0.12em;
+
+  /* ----------------------------------------------------------
+     03 — ESPACIO
+     ---------------------------------------------------------- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+
+  /* Contenedores */
+  --container-sm:  640px;
+  --container-md:  960px;
+  --container-lg:  1200px;
+  --container-xl:  1440px;
+  --gutter:        clamp(1.25rem, 4vw, 2.5rem);
+
+  /* ----------------------------------------------------------
+     04 — RADII (luxury = mínimo)
+     ---------------------------------------------------------- */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 9999px;
+
+  /* ----------------------------------------------------------
+     05 — SOMBRAS (tinte cálido)
+     ---------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(26, 20, 20, 0.06);
+  --shadow-md: 0 4px 16px rgba(26, 20, 20, 0.10);
+  --shadow-lg: 0 16px 40px rgba(26, 20, 20, 0.16);
+  --shadow-xl: 0 32px 64px rgba(26, 20, 20, 0.22);
+
+  --glow-bronce: 0 0 32px rgba(168, 138, 92, 0.35);
+
+  /* ----------------------------------------------------------
+     06 — MOTION
+     ---------------------------------------------------------- */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast:  150ms;
+  --duration-base:  240ms;
+  --duration-slow:  480ms;
+
+  /* ----------------------------------------------------------
+     07 — Z-INDEX
+     ---------------------------------------------------------- */
+  --z-card:    10;
+  --z-sticky:  100;
+  --z-nav:     500;
+  --z-modal:   1000;
+
+  /* ----------------------------------------------------------
+     08 — TOUCH / SAFE AREA
+     ---------------------------------------------------------- */
+  --touch-min: 44px;
+  --safe-top:    env(safe-area-inset-top, 0);
+  --safe-bottom: env(safe-area-inset-bottom, 0);
+  --safe-left:   env(safe-area-inset-left, 0);
+  --safe-right:  env(safe-area-inset-right, 0);
+}
+
+/* ============================================================
+   THEME — Blush surface por defecto (la marca vive en claro)
+   El dark mode se activa por sección con .surface-cocoa o .surface-wine
+   ============================================================ */
+
+body {
+  background: var(--rosa-100);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Surface variants — alternar por sección/canal */
+.surface-blush { background: var(--rosa-100); color: var(--ink); }
+.surface-nude  { background: var(--rosa-200); color: var(--ink); }
+.surface-cream { background: var(--rosa-50);  color: var(--ink); }
+.surface-terra { background: var(--rosa-500); color: var(--rosa-50); }
+.surface-cocoa { background: var(--ink-950); color: var(--paper); }
+.surface-wine  { background: var(--wine);    color: var(--rosa-50); }

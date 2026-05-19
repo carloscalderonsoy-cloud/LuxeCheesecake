@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Luxe Cheesecake · Sistema de Diseño v2.0</title>
+  <meta name="description" content="Brandbook visual · Sistema dual · Soft luxury artesanal + Dark editorial">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <style>
+    /* ============================================================
+       TOKENS — inline mirror de tokens.css
+       ============================================================ */
+    :root {
+      /* Rosa / Nude */
+      --rosa-50:  #FAF1EC;
+      --rosa-100: #F2DDD0;
+      --rosa-200: #E5C2AF;
+      --rosa-300: #D4A89B;
+      --rosa-400: #B58B74;
+      --rosa-500: #A66A5A;
+      /* Bronce */
+      --bronce-300: #D4B98C;
+      --bronce-400: #C9A574;
+      --bronce-500: #A88A5C;
+      --bronce-600: #8B6F44;
+      --bronce-700: #6E5632;
+      /* Ink */
+      --ink-950: #14090A;
+      --ink-900: #1F1410;
+      --ink-800: #2D1F1A;
+      --ink-700: #3D2A22;
+      --ink:     #1A1414;
+      --ink-muted: #5C4036;
+      --ink-faint: #8A6D5F;
+      /* Wine */
+      --wine:      #5C1F2A;
+      --wine-deep: #3D1018;
+      /* Paper */
+      --paper:        var(--rosa-50);
+      --paper-muted:  #C9B5A8;
+      --paper-faint:  #8A7868;
+      /* Funcionales */
+      --hairline:        rgba(26, 20, 20, 0.14);
+      --hairline-paper:  rgba(250, 241, 236, 0.18);
+      --hairline-bronce: rgba(168, 138, 92, 0.4);
+
+      /* Typography */
+      --font-display: 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+      --font-body:    'Manrope', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      /* Scale */
+      --text-xs:   0.75rem;
+      --text-sm:   0.875rem;
+      --text-base: 1rem;
+      --text-lg:   1.125rem;
+      --text-xl:   1.25rem;
+      --text-2xl:  1.5rem;
+      --text-3xl:  clamp(1.75rem, 4vw, 2.25rem);
+      --text-4xl:  clamp(2rem, 5vw, 3rem);
+      --text-5xl:  clamp(2.5rem, 7vw, 4.5rem);
+      --text-display: clamp(3rem, 14vw, 10rem);
+      /* Leading */
+      --leading-tight:   1.0;
+      --leading-snug:    1.15;
+      --leading-normal:  1.4;
+      --leading-relaxed: 1.6;
+      --leading-loose:   1.85;
+      /* Tracking */
+      --tracking-tight: -0.02em;
+      --tracking-normal: 0;
+      --tracking-wide:  0.04em;
+      --tracking-caps:  0.18em;
+      --tracking-caps-tight: 0.12em;
+      /* Space */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --space-8: 4rem;
+      --space-9: 6rem;
+      --space-10: 8rem;
+      --container-lg: 1200px;
+      --gutter: clamp(1.25rem, 4vw, 2.5rem);
+      /* Radii */
+      --radius-xs: 2px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-pill: 9999px;
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(26, 20, 20, 0.06);
+      --shadow-md: 0 4px 16px rgba(26, 20, 20, 0.10);
+      --shadow-lg: 0 16px 40px rgba(26, 20, 20, 0.16);
+      --glow-bronce: 0 0 32px rgba(168, 138, 92, 0.35);
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-base: 240ms;
+      /* Safe area */
+      --safe-top:    env(safe-area-inset-top, 0);
+      --safe-bottom: env(safe-area-inset-bottom, 0);
+    }
+
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--rosa-100);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .container {
+      max-width: var(--container-lg);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    .section { padding-block: var(--space-9); }
+    @media (max-width: 48em) {
+      .section { padding-block: var(--space-7); }
+    }
+    .surface-blush { background: var(--rosa-100); color: var(--ink); }
+    .surface-nude  { background: var(--rosa-200); color: var(--ink); }
+    .surface-cream { background: var(--rosa-50);  color: var(--ink); }
+    .surface-terra { background: var(--rosa-500); color: var(--rosa-50); }
+    .surface-cocoa { background: var(--ink-950); color: var(--paper); }
+    .surface-wine  { background: var(--wine);    color: var(--rosa-50); }
+
+    /* ============================================================
+       TYPOGRAPHY UTILS
+       ============================================================ */
+    .display {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-5xl);
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-tight);
+    }
+    .display-lg {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+    }
+    .h1 {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-4xl);
+      line-height: var(--leading-snug);
+    }
+    .h2 {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-3xl);
+      line-height: var(--leading-snug);
+    }
+    .lede {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-xl);
+      line-height: var(--leading-loose);
+      max-width: 36ch;
+    }
+    .body { font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    .caption {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-caps);
+      color: var(--bronce-600);
+    }
+    .surface-cocoa .caption,
+    .surface-wine  .caption { color: var(--bronce-300); }
+    .surface-terra .caption { color: var(--rosa-50); opacity: 0.85; }
+
+    .caption-dotted::before { content: '· '; }
+    .caption-dotted::after  { content: ' ·'; }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: var(--text-sm);
+    }
+
+    em { font-style: italic; }
+
+    /* ============================================================
+       LOCKUP — Recreación del logo
+       ============================================================ */
+    .lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      text-align: center;
+    }
+    .lockup__word {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-style: normal;
+      font-size: var(--text-display);
+      line-height: 0.95;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .surface-cocoa .lockup__word,
+    .surface-wine  .lockup__word { color: var(--rosa-50); }
+
+    .lockup__caption {
+      font-family: var(--font-body);
+      font-size: clamp(0.75rem, 1.4vw, 1rem);
+      font-weight: 500;
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--bronce-500);
+      margin: 0;
+    }
+    .surface-cocoa .lockup__caption,
+    .surface-wine  .lockup__caption { color: var(--bronce-300); }
+
+    .lockup__caption::before,
+    .lockup__caption::after {
+      content: '·';
+      margin-inline: 0.6em;
+      color: inherit;
+    }
+
+    .lockup__rule {
+      border: 0;
+      height: 1px;
+      width: clamp(120px, 30%, 220px);
+      background: var(--bronce-500);
+      margin: var(--space-1) 0 0 0;
+    }
+    .surface-cocoa .lockup__rule,
+    .surface-wine  .lockup__rule { background: var(--bronce-300); }
+
+    .lockup__sub {
+      font-family: var(--font-body);
+      font-size: clamp(0.6rem, 1vw, 0.75rem);
+      font-weight: 500;
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--bronce-500);
+      margin: var(--space-1) 0 0 0;
+    }
+    .surface-cocoa .lockup__sub,
+    .surface-wine  .lockup__sub { color: var(--bronce-300); }
+
+    /* ============================================================
+       SECTION HEADER
+       ============================================================ */
+    .section-head {
+      display: grid;
+      gap: var(--space-4);
+      margin-bottom: var(--space-7);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .surface-cocoa .section-head,
+    .surface-wine  .section-head { border-bottom-color: var(--hairline-paper); }
+
+    .section-head__eyebrow {
+      display: flex;
+      gap: var(--space-3);
+      align-items: baseline;
+    }
+    .section-head__num {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--bronce-600);
+    }
+    .surface-cocoa .section-head__num,
+    .surface-wine  .section-head__num { color: var(--bronce-300); }
+
+    .section-head__title {
+      max-width: 18ch;
+    }
+
+    /* ============================================================
+       NAV (sticky)
+       ============================================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(242, 221, 208, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--hairline);
+      padding-top: var(--safe-top);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3) var(--gutter);
+      gap: var(--space-4);
+      min-height: 56px;
+    }
+    .nav__brand {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-xl);
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__list {
+      display: none;
+      gap: var(--space-5);
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav__list a {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      transition: color var(--duration-base) var(--ease-out);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav__list a:hover { color: var(--bronce-600); }
+    @media (min-width: 64em) {
+      .nav__list { display: flex; }
+    }
+
+    /* ============================================================
+       COVER HERO (modo blush, recrea el logo)
+       ============================================================ */
+    .cover {
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: calc(var(--space-8) + var(--safe-top)) var(--gutter) var(--space-7);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(168, 138, 92, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(166, 106, 90, 0.08) 0%, transparent 50%),
+        var(--rosa-100);
+    }
+    .cover__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+    .cover__main {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-7);
+      padding-block: var(--space-7);
+    }
+    .cover__tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      line-height: var(--leading-snug);
+      color: var(--ink-muted);
+      text-align: center;
+      max-width: 22ch;
+      margin: 0;
+    }
+    .cover__tagline em { color: var(--bronce-600); }
+
+    .cover__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-4);
+      border-top: 1px solid var(--hairline);
+      padding-top: var(--space-4);
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-height: 44px;
+      padding: var(--space-3) var(--space-5);
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      transition: all var(--duration-base) var(--ease-out);
+    }
+    /* Blush mode buttons */
+    .btn--primary {
+      background: var(--ink);
+      color: var(--rosa-50);
+    }
+    .btn--primary:hover {
+      background: var(--ink-800);
+      box-shadow: var(--shadow-md);
+    }
+    .btn--bronze {
+      background: var(--bronce-500);
+      color: var(--rosa-50);
+    }
+    .btn--bronze:hover {
+      background: var(--bronce-600);
+      box-shadow: var(--glow-bronce);
+    }
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn--secondary:hover {
+      background: var(--ink);
+      color: var(--rosa-50);
+    }
+    .btn--ghost {
+      background: transparent;
+      color: var(--bronce-700);
+      padding-inline: var(--space-2);
+    }
+    .btn--ghost:hover { color: var(--bronce-600); }
+    /* Cocoa mode overrides */
+    .surface-cocoa .btn--primary,
+    .surface-wine  .btn--primary {
+      background: var(--bronce-500);
+      color: var(--rosa-50);
+    }
+    .surface-cocoa .btn--primary:hover,
+    .surface-wine  .btn--primary:hover { background: var(--bronce-400); }
+    .surface-cocoa .btn--secondary,
+    .surface-wine  .btn--secondary {
+      color: var(--rosa-50);
+      border-color: var(--rosa-50);
+    }
+    .surface-cocoa .btn--secondary:hover,
+    .surface-wine  .btn--secondary:hover {
+      background: var(--rosa-50);
+      color: var(--ink);
+    }
+    .surface-cocoa .btn--ghost,
+    .surface-wine  .btn--ghost { color: var(--bronce-300); }
+
+    /* ============================================================
+       PALETTE SWATCHES
+       ============================================================ */
+    .palette-group { margin-bottom: var(--space-8); }
+    .palette-group__title {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-caps);
+      color: var(--bronce-600);
+      margin: 0 0 var(--space-4) 0;
+    }
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-5);
+    }
+    .swatch { display: flex; flex-direction: column; }
+    .swatch__chip {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--hairline);
+      position: relative;
+      overflow: hidden;
+    }
+    .swatch__label {
+      padding-top: var(--space-3);
+      display: grid;
+      gap: var(--space-1);
+    }
+    .swatch__name {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--text-lg);
+      color: var(--ink);
+    }
+    .swatch__meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--ink-faint);
+    }
+    .swatch__use {
+      font-size: var(--text-xs);
+      color: var(--ink-muted);
+      margin-top: var(--space-1);
+    }
+
+    /* ============================================================
+       TYPOGRAPHY SPECIMEN
+       ============================================================ */
+    .specimen {
+      display: grid;
+      gap: var(--space-5);
+      padding-block: var(--space-6);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .specimen:last-child { border-bottom: 0; }
+    .specimen__sample { overflow-wrap: break-word; }
+    .specimen__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--ink-faint);
+    }
+    .specimen__meta span::before { content: '· '; color: var(--bronce-500); }
+    .specimen__meta span:first-child::before { content: none; }
+
+    .scale-row {
+      display: flex;
+      gap: var(--space-5);
+      align-items: baseline;
+      padding-block: var(--space-3);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .scale-row__token {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--ink-faint);
+      min-width: 14ch;
+    }
+    .scale-row__sample {
+      font-family: var(--font-display);
+      font-style: italic;
+      flex: 1;
+      line-height: 1.1;
+    }
+
+    /* ============================================================
+       SPACING DEMO
+       ============================================================ */
+    .spacing-row {
+      display: grid;
+      grid-template-columns: 12ch 1fr;
+      gap: var(--space-5);
+      align-items: center;
+      padding-block: var(--space-2);
+    }
+    .spacing-row__token {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--ink-faint);
+    }
+    .spacing-row__bar {
+      background: linear-gradient(90deg, var(--bronce-600) 0%, var(--bronce-400) 100%);
+      height: 10px;
+      border-radius: 1px;
+    }
+
+    /* ============================================================
+       PRODUCT CARD
+       ============================================================ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-6);
+    }
+    .product-card {
+      background: var(--rosa-50);
+      border: 1px solid var(--rosa-200);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--duration-base) var(--ease-out),
+                  box-shadow var(--duration-base) var(--ease-out);
+    }
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    /* Cocoa mode product card */
+    .surface-cocoa .product-card,
+    .surface-wine  .product-card {
+      background: var(--ink-900);
+      border-color: var(--ink-800);
+    }
+    .product-card__photo {
+      aspect-ratio: 4 / 5;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 35% 35%, var(--rosa-50) 0%, transparent 55%),
+        radial-gradient(ellipse at 65% 65%, var(--bronce-300) 0%, transparent 50%),
+        radial-gradient(circle at 50% 75%, var(--bronce-400) 0%, transparent 35%),
+        var(--rosa-200);
+    }
+    .product-card__photo--berry {
+      background:
+        radial-gradient(ellipse at 35% 35%, var(--rosa-50) 0%, transparent 50%),
+        radial-gradient(ellipse at 65% 55%, var(--rosa-400) 0%, transparent 55%),
+        radial-gradient(circle at 50% 70%, var(--wine) 0%, transparent 30%),
+        var(--rosa-300);
+    }
+    .product-card__photo--cocoa {
+      background:
+        radial-gradient(ellipse at 40% 35%, var(--bronce-300) 0%, transparent 55%),
+        radial-gradient(ellipse at 60% 60%, var(--rosa-200) 0%, transparent 60%),
+        radial-gradient(circle at 50% 75%, var(--bronce-600) 0%, transparent 35%),
+        var(--ink-800);
+    }
+    .product-card__photo--terra {
+      background:
+        radial-gradient(ellipse at 40% 35%, var(--rosa-50) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 60%, var(--bronce-400) 0%, transparent 55%),
+        var(--rosa-500);
+    }
+    .product-card__badge {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      background: var(--ink);
+      color: var(--bronce-300);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      padding: var(--space-1) var(--space-2);
+      letter-spacing: var(--tracking-caps-tight);
+      text-transform: uppercase;
+      border-radius: var(--radius-xs);
+    }
+    .product-card__body {
+      padding: var(--space-5);
+      display: grid;
+      gap: var(--space-3);
+    }
+    .product-card__cat {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--bronce-600);
+    }
+    .surface-cocoa .product-card__cat,
+    .surface-wine  .product-card__cat { color: var(--bronce-300); }
+    .product-card__cat::before { content: '· '; }
+    .product-card__cat::after  { content: ' ·'; }
+
+    .product-card__name {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-2xl);
+      line-height: var(--leading-snug);
+      margin: 0;
+      color: var(--ink);
+    }
+    .surface-cocoa .product-card__name,
+    .surface-wine  .product-card__name { color: var(--rosa-50); }
+
+    .product-card__note {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-sm);
+      line-height: var(--leading-loose);
+      color: var(--ink-muted);
+      margin: 0;
+    }
+    .surface-cocoa .product-card__note,
+    .surface-wine  .product-card__note { color: var(--paper-muted); }
+
+    .product-card__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--hairline);
+      margin-top: var(--space-2);
+    }
+    .surface-cocoa .product-card__foot,
+    .surface-wine  .product-card__foot { border-top-color: var(--hairline-paper); }
+
+    /* ============================================================
+       PRICE
+       ============================================================ */
+    .price {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      display: inline-flex;
+      align-items: baseline;
+      gap: var(--space-1);
+      color: var(--ink);
+    }
+    .surface-cocoa .price,
+    .surface-wine  .price { color: var(--rosa-50); }
+    .price__amount {
+      font-size: var(--text-xl);
+      font-weight: 500;
+    }
+    .price__currency {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-caps-tight);
+      color: var(--bronce-600);
+    }
+    .surface-cocoa .price__currency,
+    .surface-wine  .price__currency { color: var(--bronce-300); }
+
+    /* ============================================================
+       TASTING NOTE
+       ============================================================ */
+    .tasting-note {
+      max-width: 36ch;
+      margin: 0;
+      padding-left: var(--space-4);
+      border-left: 1px solid var(--bronce-500);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-xl);
+      line-height: var(--leading-loose);
+      color: var(--ink);
+    }
+    .surface-cocoa .tasting-note,
+    .surface-wine  .tasting-note {
+      color: var(--rosa-50);
+      border-left-color: var(--bronce-300);
+    }
+    .tasting-note p { margin: 0; }
+
+    /* ============================================================
+       SIZE SELECTOR
+       ============================================================ */
+    .size-selector {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-2);
+    }
+    .size-selector legend {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--bronce-600);
+      margin-bottom: var(--space-2);
+    }
+    .surface-cocoa .size-selector legend,
+    .surface-wine  .size-selector legend { color: var(--bronce-300); }
+    .size-selector__row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-2);
+    }
+    @media (min-width: 32em) {
+      .size-selector__row { grid-template-columns: repeat(4, 1fr); }
+    }
+    .size-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-1);
+      min-height: 64px;
+      padding: var(--space-3);
+      border: 1px solid var(--rosa-300);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--duration-base) var(--ease-out);
+      text-align: center;
+      background: var(--rosa-50);
+    }
+    .surface-cocoa .size-option,
+    .surface-wine  .size-option {
+      border-color: var(--ink-700);
+      background: var(--ink-900);
+    }
+    .size-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .size-option:has(input:checked) {
+      border-color: var(--ink);
+      border-width: 2px;
+      padding: calc(var(--space-3) - 1px);
+    }
+    .surface-cocoa .size-option:has(input:checked),
+    .surface-wine  .size-option:has(input:checked) {
+      border-color: var(--bronce-300);
+    }
+    .size-option__name {
+      font-size: var(--text-sm);
+      font-weight: 500;
+    }
+    .size-option__price {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--ink-faint);
+    }
+    .surface-cocoa .size-option__price,
+    .surface-wine  .size-option__price { color: var(--bronce-300); }
+
+    /* ============================================================
+       EVENT CTA
+       ============================================================ */
+    .event-cta {
+      padding: var(--space-7);
+      border-radius: var(--radius-sm);
+      display: grid;
+      gap: var(--space-4);
+      max-width: 640px;
+    }
+    .event-cta__head {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--text-3xl);
+      line-height: var(--leading-snug);
+      margin: 0;
+    }
+    .event-cta__body {
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      max-width: 42ch;
+    }
+
+    /* ============================================================
+       ACCORDION
+       ============================================================ */
+    .accordion {
+      border-bottom: 1px solid var(--hairline);
+    }
+    .surface-cocoa .accordion,
+    .surface-wine  .accordion { border-bottom-color: var(--hairline-paper); }
+    .accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: var(--space-4) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--text-lg);
+      min-height: 44px;
+    }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .accordion summary::after {
+      content: '+';
+      font-family: var(--font-display);
+      font-style: normal;
+      font-weight: 400;
+      font-size: var(--text-2xl);
+      color: var(--bronce-600);
+      transition: transform var(--duration-base) var(--ease-out);
+      line-height: 1;
+    }
+    .surface-cocoa .accordion summary::after,
+    .surface-wine  .accordion summary::after { color: var(--bronce-300); }
+    .accordion[open] summary::after { transform: rotate(45deg); }
+    .accordion__body {
+      padding: 0 0 var(--space-5) 0;
+      max-width: 60ch;
+      color: var(--ink-muted);
+      line-height: var(--leading-relaxed);
+    }
+    .surface-cocoa .accordion__body,
+    .surface-wine  .accordion__body { color: var(--paper-muted); }
+
+    /* ============================================================
+       DUAL SYSTEM COMPARISON
+       ============================================================ */
+    .dual-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+    @media (min-width: 56em) {
+      .dual-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .dual-card {
+      padding: var(--space-7);
+      border-radius: var(--radius-sm);
+      display: grid;
+      gap: var(--space-4);
+      min-height: 340px;
+    }
+    .dual-card--blush {
+      background: var(--rosa-100);
+      border: 1px solid var(--rosa-200);
+      color: var(--ink);
+    }
+    .dual-card--cocoa {
+      background: var(--ink-950);
+      color: var(--rosa-50);
+    }
+
+    /* ============================================================
+       VOICE — SI vs NO
+       ============================================================ */
+    .voice-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+    @media (min-width: 48em) {
+      .voice-grid { grid-template-columns: 1fr 1fr; gap: var(--space-7); }
+    }
+    .voice-col h3 {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--text-2xl);
+      margin: 0 0 var(--space-5) 0;
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .voice-col--si h3 { color: var(--bronce-700); }
+    .voice-col--no h3 { color: var(--wine); text-decoration: line-through; text-decoration-thickness: 1px; }
+    .voice-list {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: grid;
+      gap: var(--space-3);
+    }
+    .voice-list li {
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--hairline);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--text-lg);
+      line-height: var(--leading-snug);
+    }
+    .voice-col--no .voice-list li {
+      font-family: var(--font-body);
+      font-style: normal;
+      color: var(--ink-faint);
+      font-size: var(--text-base);
+    }
+
+    /* ============================================================
+       APPLICATIONS
+       ============================================================ */
+    .app-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+    @media (min-width: 56em) {
+      .app-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .app-mock {
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .surface-cocoa .app-mock,
+    .surface-wine  .app-mock { border-color: var(--hairline-paper); }
+    .app-mock__label {
+      padding: var(--space-3) var(--space-4);
+      background: var(--rosa-200);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-caps-tight);
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .surface-cocoa .app-mock__label,
+    .surface-wine  .app-mock__label {
+      background: var(--ink-900);
+      color: var(--bronce-300);
+      border-bottom-color: var(--hairline-paper);
+    }
+    .app-mock__body {
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-4);
+      flex: 1;
+    }
+    .app-mock--blush { background: var(--rosa-100); color: var(--ink); }
+    .app-mock--cocoa { background: var(--ink-950); color: var(--rosa-50); }
+    .app-mock--wine  { background: var(--wine); color: var(--rosa-50); }
+    .app-mock--cocoa .app-mock__photo,
+    .app-mock--wine .app-mock__photo {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(ellipse at 40% 35%, var(--bronce-300) 0%, transparent 55%),
+        radial-gradient(ellipse at 60% 60%, var(--rosa-200) 0%, transparent 60%),
+        var(--ink-800);
+      border-radius: var(--radius-xs);
+    }
+    .app-mock--blush .app-mock__photo {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(ellipse at 40% 35%, var(--rosa-50) 0%, transparent 55%),
+        radial-gradient(ellipse at 60% 60%, var(--bronce-300) 0%, transparent 50%),
+        var(--rosa-200);
+      border-radius: var(--radius-xs);
+    }
+
+    /* ============================================================
+       RULES / DIVIDERS
+       ============================================================ */
+    .rule {
+      border: 0;
+      height: 1px;
+      background: var(--hairline);
+      margin-block: var(--space-6);
+    }
+    .surface-cocoa .rule,
+    .surface-wine  .rule { background: var(--hairline-paper); }
+
+    .rule--dot {
+      background: transparent;
+      height: auto;
+      text-align: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rule--dot::before {
+      content: '·';
+      background: var(--rosa-100);
+      padding: 0 var(--space-4);
+      color: var(--bronce-500);
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      position: relative;
+      z-index: 1;
+      line-height: 1;
+    }
+    .surface-cocoa .rule--dot::before { background: var(--ink-950); color: var(--bronce-300); }
+    .surface-wine  .rule--dot::before { background: var(--wine); color: var(--bronce-300); }
+    .surface-cream .rule--dot::before { background: var(--rosa-50); }
+    .rule--dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--hairline);
+    }
+    .surface-cocoa .rule--dot::after,
+    .surface-wine  .rule--dot::after { background: var(--hairline-paper); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .foot {
+      padding: var(--space-9) var(--gutter) calc(var(--space-7) + var(--safe-bottom));
+      position: relative;
+      overflow: hidden;
+    }
+    .foot__wordmark {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(5rem, 20vw, 22rem);
+      line-height: 0.9;
+      letter-spacing: 0.05em;
+      color: var(--ink-900);
+      pointer-events: none;
+      user-select: none;
+      text-align: center;
+      margin-top: var(--space-7);
+    }
+    .foot__sig {
+      margin-top: var(--space-7);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--hairline-paper);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--paper-faint);
+      letter-spacing: var(--tracking-caps-tight);
+      text-transform: uppercase;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       CODE BLOCK
+       ============================================================ */
+    .code-block {
+      background: var(--ink-900);
+      border: 1px solid var(--ink-800);
+      border-radius: var(--radius-sm);
+      padding: var(--space-5);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+      overflow-x: auto;
+      color: var(--rosa-200);
+    }
+    .code-block .tk { color: var(--bronce-300); }
+    .code-block .val { color: var(--rosa-50); }
+    .code-block .cm { color: var(--paper-faint); font-style: italic; }
+  </style>
+</head>
+<body class="surface-blush">
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav" aria-label="Sistema de diseño">
+    <div class="nav__inner">
+      <a href="#cover" class="nav__brand">LUXE</a>
+      <ul class="nav__list">
+        <li><a href="#manifiesto">Manifiesto</a></li>
+        <li><a href="#dual">Sistema dual</a></li>
+        <li><a href="#paleta">Paleta</a></li>
+        <li><a href="#tipografia">Tipografía</a></li>
+        <li><a href="#componentes">Componentes</a></li>
+        <li><a href="#voz">Voz</a></li>
+        <li><a href="#aplicaciones">Aplicaciones</a></li>
+      </ul>
+      <a href="#aplicaciones" class="btn btn--bronze">Ver ecommerce</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       COVER (modo blush, recrea logo)
+       ============================================================ -->
+  <header class="cover" id="cover">
+
+    <div class="cover__top">
+      <div>
+        <p class="caption">Guadalajara · México</p>
+      </div>
+      <div style="text-align: right;">
+        <p class="caption">Sistema de diseño</p>
+        <p class="mono" style="color: var(--bronce-600); margin: var(--space-1) 0 0 0;">v2.0 · 2026</p>
+      </div>
+    </div>
+
+    <div class="cover__main">
+      <div class="lockup">
+        <h1 class="lockup__word">LUXE</h1>
+        <p class="lockup__caption">Cheesecake</p>
+        <hr class="lockup__rule">
+        <p class="lockup__sub">Artesanal</p>
+      </div>
+
+      <p class="cover__tagline">El primer mordisco <em>lo cambia todo.</em></p>
+    </div>
+
+    <div class="cover__bottom">
+      <p class="caption">Scroll &nbsp; ↓</p>
+      <p class="mono" style="color: var(--ink-faint);">B2C + Eventos · Web/Ecommerce</p>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       00 — MANIFIESTO
+       ============================================================ -->
+  <section class="section surface-blush" id="manifiesto">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">00</span>
+          <span class="caption">Manifiesto</span>
+        </div>
+        <h2 class="display section-head__title">Lo que <em>somos.</em></h2>
+      </header>
+
+      <div style="display: grid; gap: var(--space-5); max-width: 60ch;">
+        <p class="lede">
+          Luxe Cheesecake no es una pastelería. Es un objeto de deseo presentado como pieza editorial: hecho a mano, fotografiado de cerca, contado con palabras que se susurran.
+        </p>
+        <p class="body" style="color: var(--ink-muted)">
+          Competimos con perfume, con vino, con alta cocina — no con la repostería de catálogo. Cada cheesecake se cuenta como un objeto: cuándo se hizo, cuánto reposó, con qué se templó.
+        </p>
+        <p class="body" style="color: var(--ink-muted)">
+          La marca vive en <strong>dos modos paralelos</strong>: blush nude para el día a día, intimista y artesanal; cocoa oscuro para los momentos signature, donde el producto se revela. El bronce es el hilo que los conecta.
+        </p>
+        <hr class="rule rule--dot">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       01 — SISTEMA DUAL
+       ============================================================ -->
+  <section class="section surface-blush" id="dual">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">01</span>
+          <span class="caption">Sistema dual</span>
+        </div>
+        <h2 class="display section-head__title">Dos modos, <em>una marca.</em></h2>
+      </header>
+
+      <p class="body" style="color: var(--ink-muted); max-width: 56ch; margin-bottom: var(--space-7);">
+        Una vista = un modo dominante. El bronce funciona en ambos y conecta narrativamente la identidad. Nunca mezclar surfaces por encima del fold.
+      </p>
+
+      <div class="dual-grid">
+
+        <article class="dual-card dual-card--blush">
+          <p class="caption">Modo Blush · 70% del sistema</p>
+          <div class="lockup" style="align-items: flex-start; text-align: left; gap: var(--space-2);">
+            <h3 class="lockup__word" style="font-size: clamp(2.5rem, 8vw, 4rem);">LUXE</h3>
+            <p class="lockup__caption" style="font-size: var(--text-xs);">Cheesecake</p>
+            <hr class="lockup__rule" style="width: 80px;">
+          </div>
+          <p style="font-family: var(--font-display); font-style: italic; font-size: var(--text-xl); line-height: 1.6; margin: 0; max-width: 28ch;">
+            Catálogo, listados, about, newsletter. Soft, femenino, intimista.
+          </p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--ink-muted);">
+            <li>· rosa-100 surface</li>
+            <li>· ink texto + bronce accent</li>
+            <li>· Bodoni italic + tracked caps</li>
+          </ul>
+        </article>
+
+        <article class="dual-card dual-card--cocoa">
+          <p class="caption">Modo Cocoa · 25% del sistema</p>
+          <div class="lockup" style="align-items: flex-start; text-align: left; gap: var(--space-2);">
+            <h3 class="lockup__word" style="font-size: clamp(2.5rem, 8vw, 4rem);">LUXE</h3>
+            <p class="lockup__caption" style="font-size: var(--text-xs);">Cheesecake</p>
+            <hr class="lockup__rule" style="width: 80px;">
+          </div>
+          <p style="font-family: var(--font-display); font-style: italic; font-size: var(--text-xl); line-height: 1.6; margin: 0; max-width: 28ch;">
+            Hero principal, PDP signature, eventos, empaque premium. Denso, dramático.
+          </p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--paper-muted);">
+            <li>· ink-950 surface</li>
+            <li>· cream texto + bronce-300 accent</li>
+            <li>· Bodoni italic + Wine para eventos</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       02 — PALETA
+       ============================================================ -->
+  <section class="section surface-blush" id="paleta">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">02</span>
+          <span class="caption">La paleta</span>
+        </div>
+        <h2 class="display section-head__title">Nude, bronce, <em>cocoa.</em></h2>
+      </header>
+
+      <!-- ROSA / NUDE -->
+      <div class="palette-group">
+        <h3 class="palette-group__title">Rosa · Nude — surface primaria</h3>
+        <div class="palette-grid">
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #FAF1EC;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Rosa 50</div>
+              <div class="swatch__meta">#FAF1EC · --rosa-50</div>
+              <div class="swatch__use">Paper, fondo claro</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #F2DDD0;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Rosa 100</div>
+              <div class="swatch__meta">#F2DDD0 · --rosa-100</div>
+              <div class="swatch__use">Surface default</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #E5C2AF;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Rosa 200</div>
+              <div class="swatch__meta">#E5C2AF · --rosa-200</div>
+              <div class="swatch__use">Cards sobre blush</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #D4A89B;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Rosa 300</div>
+              <div class="swatch__meta">#D4A89B · --rosa-300</div>
+              <div class="swatch__use">Rosa polvo signature</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #B58B74;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Rosa 400</div>
+              <div class="swatch__meta">#B58B74 · --rosa-400</div>
+              <div class="swatch__use">Nude denso</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #A66A5A;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Rosa 500</div>
+              <div class="swatch__meta">#A66A5A · --rosa-500</div>
+              <div class="swatch__use">Terracota acento</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BRONCE -->
+      <div class="palette-group">
+        <h3 class="palette-group__title">Bronce — accent firma, bridge entre modos</h3>
+        <div class="palette-grid">
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #D4B98C;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Bronce 300</div>
+              <div class="swatch__meta">#D4B98C · --bronce-300</div>
+              <div class="swatch__use">Highlight sobre dark</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #C9A574;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Bronce 400</div>
+              <div class="swatch__meta">#C9A574 · --bronce-400</div>
+              <div class="swatch__use">Acento medio</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #A88A5C;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Bronce 500</div>
+              <div class="swatch__meta">#A88A5C · --bronce-500</div>
+              <div class="swatch__use">SIGNATURE — logo caption</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #8B6F44;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Bronce 600</div>
+              <div class="swatch__meta">#8B6F44 · --bronce-600</div>
+              <div class="swatch__use">Hover, focus</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #6E5632;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Bronce 700</div>
+              <div class="swatch__meta">#6E5632 · --bronce-700</div>
+              <div class="swatch__use">Texto bronce sobre claro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INK -->
+      <div class="palette-group">
+        <h3 class="palette-group__title">Ink — negro cálido (matches "LUXE" del logo)</h3>
+        <div class="palette-grid">
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #1A1414;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Ink</div>
+              <div class="swatch__meta">#1A1414 · --ink</div>
+              <div class="swatch__use">Texto sobre claro, wordmark</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #14090A;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Ink 950</div>
+              <div class="swatch__meta">#14090A · --ink-950</div>
+              <div class="swatch__use">Surface dark mode</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #1F1410;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Ink 900</div>
+              <div class="swatch__meta">#1F1410 · --ink-900</div>
+              <div class="swatch__use">Cards sobre dark</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #2D1F1A;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Ink 800</div>
+              <div class="swatch__meta">#2D1F1A · --ink-800</div>
+              <div class="swatch__use">Elevación dark</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WINE -->
+      <div class="palette-group">
+        <h3 class="palette-group__title">Wine — drama editorial, exclusivo eventos</h3>
+        <div class="palette-grid">
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #5C1F2A;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Wine</div>
+              <div class="swatch__meta">#5C1F2A · --wine</div>
+              <div class="swatch__use">Surface eventos B2B</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #3D1018;"></div>
+            <div class="swatch__label">
+              <div class="swatch__name">Wine Deep</div>
+              <div class="swatch__meta">#3D1018 · --wine-deep</div>
+              <div class="swatch__use">Hover, profundidad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       03 — TIPOGRAFÍA
+       ============================================================ -->
+  <section class="section surface-cream" id="tipografia">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">03</span>
+          <span class="caption">La tipografía</span>
+        </div>
+        <h2 class="display section-head__title">Bodoni <em>como firma.</em></h2>
+      </header>
+
+      <!-- BODONI MODA -->
+      <div class="specimen">
+        <div class="specimen__sample" style="font-family: var(--font-display); font-weight: 500; font-size: clamp(3rem, 14vw, 8rem); line-height: 0.95; color: var(--ink); letter-spacing: 0.05em;">
+          LUXE
+        </div>
+        <div class="specimen__meta">
+          <span>Bodoni Moda</span>
+          <span>Variable + italic + optical sizing</span>
+          <span>Wordmark, hero, tasting notes</span>
+          <span>Google Fonts</span>
+        </div>
+      </div>
+
+      <!-- BODONI ITALIC -->
+      <div class="specimen">
+        <div class="specimen__sample" style="font-family: var(--font-display); font-style: italic; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.1; color: var(--ink);">
+          El primer mordisco <em style="color: var(--bronce-700);">lo cambia todo.</em>
+        </div>
+        <div class="specimen__meta">
+          <span>Bodoni Moda Italic</span>
+          <span>Display hero</span>
+          <span>Palabra clave italicizada en bronce-700</span>
+        </div>
+      </div>
+
+      <!-- MANROPE -->
+      <div class="specimen">
+        <div class="specimen__sample" style="font-family: var(--font-body); font-size: clamp(1.25rem, 3vw, 2rem); line-height: 1.4; color: var(--ink); max-width: 50ch;">
+          Cheesecakes hechos a mano en Guadalajara. Edición limitada cada semana.
+        </div>
+        <div class="specimen__meta">
+          <span>Manrope</span>
+          <span>Variable 300–700</span>
+          <span>Body, UI, tracked caps</span>
+        </div>
+      </div>
+
+      <!-- TRACKED CAPS -->
+      <div class="specimen">
+        <div class="specimen__sample" style="font-family: var(--font-body); font-weight: 500; font-size: clamp(0.875rem, 1.5vw, 1.125rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronce-500);">
+          · Cheesecake artesanal ·
+        </div>
+        <div class="specimen__meta">
+          <span>Manrope 500 caps</span>
+          <span>tracking 0.18em</span>
+          <span>Color bronce-500</span>
+          <span>Dots ::before/::after</span>
+        </div>
+      </div>
+
+      <!-- MONO -->
+      <div class="specimen">
+        <div class="specimen__sample" style="font-family: var(--font-mono); font-size: clamp(1.5rem, 4vw, 2.5rem); color: var(--ink); font-variant-numeric: tabular-nums;">
+          $580 MXN · 48h reposo · 6 personas
+        </div>
+        <div class="specimen__meta">
+          <span>JetBrains Mono</span>
+          <span>400–500</span>
+          <span>Precios, specs, cifras</span>
+          <span>tabular-nums siempre</span>
+        </div>
+      </div>
+
+      <hr class="rule rule--dot">
+
+      <h3 class="palette-group__title">Escala — Bodoni Moda italic</h3>
+      <div style="color: var(--ink);">
+        <div class="scale-row">
+          <span class="scale-row__token">--text-display</span>
+          <span class="scale-row__sample" style="font-size: clamp(2.5rem, 6vw, 4rem);">Lo cambia todo</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__token">--text-5xl</span>
+          <span class="scale-row__sample" style="font-size: clamp(2rem, 5vw, 3rem);">Densidad untuosa</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__token">--text-4xl</span>
+          <span class="scale-row__sample" style="font-size: clamp(1.75rem, 4vw, 2.25rem);">Reposado 48 horas</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__token">--text-3xl</span>
+          <span class="scale-row__sample" style="font-size: 1.75rem;">Edición de la semana</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__token">--text-2xl</span>
+          <span class="scale-row__sample" style="font-size: 1.5rem;">Notas de vainilla bourbon</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__token">--text-xl</span>
+          <span class="scale-row__sample" style="font-size: 1.25rem;">Templado a mano cada noche</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       04 — ESPACIO
+       ============================================================ -->
+  <section class="section surface-blush">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">04</span>
+          <span class="caption">Escala espacial</span>
+        </div>
+        <h2 class="display section-head__title">4 puntos, saltos de <em>ocho.</em></h2>
+      </header>
+
+      <div style="max-width: 720px;">
+        <div class="spacing-row"><span class="spacing-row__token">--space-1 · 4</span><div class="spacing-row__bar" style="width: 4px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-2 · 8</span><div class="spacing-row__bar" style="width: 8px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-3 · 12</span><div class="spacing-row__bar" style="width: 12px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-4 · 16</span><div class="spacing-row__bar" style="width: 16px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-5 · 24</span><div class="spacing-row__bar" style="width: 24px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-6 · 32</span><div class="spacing-row__bar" style="width: 32px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-7 · 48</span><div class="spacing-row__bar" style="width: 48px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-8 · 64</span><div class="spacing-row__bar" style="width: 64px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-9 · 96</span><div class="spacing-row__bar" style="width: 96px;"></div></div>
+        <div class="spacing-row"><span class="spacing-row__token">--space-10 · 128</span><div class="spacing-row__bar" style="width: 128px;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       05 — COMPONENTES MODO BLUSH
+       ============================================================ -->
+  <section class="section surface-blush" id="componentes">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">05</span>
+          <span class="caption">Componentes · modo blush</span>
+        </div>
+        <h2 class="display section-head__title">Las piezas <em>en suave.</em></h2>
+      </header>
+
+      <h3 class="palette-group__title">Botones · 4 tiers</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-8);">
+        <button class="btn btn--primary">Pedir ahora →</button>
+        <button class="btn btn--bronze">Reservar pieza</button>
+        <button class="btn btn--secondary">Ver detalle</button>
+        <button class="btn btn--ghost">Suscribirme</button>
+      </div>
+
+      <h3 class="palette-group__title">Product cards · modo blush</h3>
+      <div class="card-grid" style="margin-bottom: var(--space-8);">
+
+        <article class="product-card">
+          <div class="product-card__photo" aria-label="Foto producto">
+            <span class="product-card__badge">Edición 12</span>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__cat">Signature</span>
+            <h4 class="product-card__name">Burnt Basque <em>Bourbon</em></h4>
+            <p class="product-card__note">Notas de vainilla bourbon, base de speculoos tostada, terminado con caramelo templado a mano.</p>
+            <div class="product-card__foot">
+              <span class="price"><span class="price__amount">580</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__photo product-card__photo--berry"></div>
+          <div class="product-card__body">
+            <span class="product-card__cat">Estación</span>
+            <h4 class="product-card__name">Frutos rojos <em>infusión</em></h4>
+            <p class="product-card__note">Notas de frambuesa silvestre, base de masa quebrada, terminado con coulis denso de moras.</p>
+            <div class="product-card__foot">
+              <span class="price"><span class="price__amount">620</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__photo product-card__photo--terra"></div>
+          <div class="product-card__body">
+            <span class="product-card__cat">Estación</span>
+            <h4 class="product-card__name">Durazno <em>en almíbar</em></h4>
+            <p class="product-card__note">Notas de durazno blanco templado, base de almendra tostada, terminado con romero infusionado.</p>
+            <div class="product-card__foot">
+              <span class="price"><span class="price__amount">640</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <hr class="rule rule--dot">
+
+      <h3 class="palette-group__title">Tasting note · firma de marca</h3>
+      <blockquote class="tasting-note" style="margin-bottom: var(--space-8);">
+        <p>Notas de vainilla bourbon de Madagascar, base de galleta speculoos tostada a baja temperatura, terminado con dulce de leche templado a mano cada noche.</p>
+      </blockquote>
+
+      <h3 class="palette-group__title">Size selector · 4 variantes</h3>
+      <fieldset class="size-selector" style="margin-bottom: var(--space-8); max-width: 640px;">
+        <legend>Tamaño</legend>
+        <div class="size-selector__row">
+          <label class="size-option"><input type="radio" name="demo-blush-size"><span class="size-option__name">Individual</span><span class="size-option__price">$120</span></label>
+          <label class="size-option"><input type="radio" name="demo-blush-size" checked><span class="size-option__name">6 personas</span><span class="size-option__price">$580</span></label>
+          <label class="size-option"><input type="radio" name="demo-blush-size"><span class="size-option__name">10 personas</span><span class="size-option__price">$980</span></label>
+          <label class="size-option"><input type="radio" name="demo-blush-size"><span class="size-option__name">14 personas</span><span class="size-option__price">$1,380</span></label>
+        </div>
+      </fieldset>
+
+      <h3 class="palette-group__title">Accordion · native &lt;details&gt;</h3>
+      <div style="max-width: 720px;">
+        <details class="accordion">
+          <summary>¿Cuánto dura un cheesecake en refrigeración?</summary>
+          <div class="accordion__body">Hasta 5 días en refrigerador, sellado. Recomendamos consumirlo templado — 15 a 20 minutos fuera del refrigerador antes de servir.</div>
+        </details>
+        <details class="accordion">
+          <summary>¿Hacen envíos a domicilio?</summary>
+          <div class="accordion__body">Cobertura GDL y Zapopan en moto refrigerada, ventana de 2 horas. Foráneo CDMX/MTY por mensajería refrigerada, programado con 48h de anticipación.</div>
+        </details>
+        <details class="accordion">
+          <summary>¿Cotizan para bodas y eventos?</summary>
+          <div class="accordion__body">Sí. Diseñamos selecciones únicas desde 40 personas. Respondemos en 24 horas con propuesta y degustación opcional en taller.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       06 — COMPONENTES MODO COCOA
+       ============================================================ -->
+  <section class="section surface-cocoa">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">06</span>
+          <span class="caption">Componentes · modo cocoa</span>
+        </div>
+        <h2 class="display section-head__title" style="color: var(--rosa-50);">Las piezas <em>en denso.</em></h2>
+      </header>
+
+      <p class="body" style="color: var(--paper-muted); max-width: 50ch; margin-bottom: var(--space-7);">
+        Los mismos componentes, surface oscura. Se usa en hero principal, PDP signature, eventos y empaque. El bronce sube a 300 para mantener legibilidad.
+      </p>
+
+      <h3 class="palette-group__title" style="color: var(--bronce-300);">Botones · cocoa mode</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-8);">
+        <button class="btn btn--primary">Pedir ahora →</button>
+        <button class="btn btn--secondary">Ver detalle</button>
+        <button class="btn btn--ghost">Conocer más</button>
+      </div>
+
+      <h3 class="palette-group__title" style="color: var(--bronce-300);">Product cards · cocoa mode</h3>
+      <div class="card-grid" style="margin-bottom: var(--space-8);">
+
+        <article class="product-card">
+          <div class="product-card__photo product-card__photo--cocoa" aria-label="Foto producto">
+            <span class="product-card__badge">Signature</span>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__cat">Edición limitada</span>
+            <h4 class="product-card__name">Cacao 72% <em>tostado</em></h4>
+            <p class="product-card__note">Notas de cacao Tabasco, base de amaranto inflado, terminado con ganache ahumada en madera de mezquite.</p>
+            <div class="product-card__foot">
+              <span class="price"><span class="price__amount">720</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__photo product-card__photo--cocoa"></div>
+          <div class="product-card__body">
+            <span class="product-card__cat">Drop semanal</span>
+            <h4 class="product-card__name">Café de olla <em>denso</em></h4>
+            <p class="product-card__note">Notas de café Coatepec, base de canela tostada, terminado con piloncillo templado.</p>
+            <div class="product-card__foot">
+              <span class="price"><span class="price__amount">640</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <hr class="rule rule--dot">
+
+      <h3 class="palette-group__title" style="color: var(--bronce-300);">Tasting note · cocoa</h3>
+      <blockquote class="tasting-note" style="margin-bottom: var(--space-8);">
+        <p>Notas de cacao Tabasco 72%, base de amaranto inflado tostado, terminado con ganache ahumada en madera de mezquite.</p>
+      </blockquote>
+
+      <h3 class="palette-group__title" style="color: var(--bronce-300);">Size selector · cocoa</h3>
+      <fieldset class="size-selector" style="max-width: 640px;">
+        <legend>Tamaño</legend>
+        <div class="size-selector__row">
+          <label class="size-option"><input type="radio" name="demo-cocoa-size"><span class="size-option__name">Individual</span><span class="size-option__price">$140</span></label>
+          <label class="size-option"><input type="radio" name="demo-cocoa-size" checked><span class="size-option__name">6 personas</span><span class="size-option__price">$720</span></label>
+          <label class="size-option"><input type="radio" name="demo-cocoa-size"><span class="size-option__name">10 personas</span><span class="size-option__price">$1,180</span></label>
+          <label class="size-option"><input type="radio" name="demo-cocoa-size"><span class="size-option__name">14 personas</span><span class="size-option__price">$1,580</span></label>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       07 — PATRONES (Hero blush, Hero cocoa, Eventos wine)
+       ============================================================ -->
+  <section class="section surface-blush" id="patrones">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">07</span>
+          <span class="caption">Patrones</span>
+        </div>
+        <h2 class="display section-head__title">Tres heros, <em>tres registros.</em></h2>
+      </header>
+
+      <p class="body" style="color: var(--ink-muted); max-width: 56ch; margin-bottom: var(--space-7);">
+        El hero define el modo de la vista entera. Blush para catálogo/about, cocoa para signature/drops, wine exclusivo para B2B eventos.
+      </p>
+
+      <div style="display: grid; gap: var(--space-6);">
+
+        <!-- HERO BLUSH -->
+        <div style="padding: var(--space-7); border: 1px solid var(--rosa-200); border-radius: var(--radius-sm); background: var(--rosa-50);">
+          <p class="caption" style="margin-bottom: var(--space-5);">Hero blush · catálogo/about</p>
+          <p class="caption" style="text-align: left; color: var(--bronce-500); margin-bottom: var(--space-3);">· Nueva temporada ·</p>
+          <h3 class="display-lg" style="margin-bottom: var(--space-4); color: var(--ink);">Un objeto <em>de deseo.</em></h3>
+          <p class="body" style="color: var(--ink-muted); max-width: 42ch; margin-bottom: var(--space-5);">
+            Hechos a mano en Guadalajara, una nueva edición cada semana. Reservas abiertas los jueves.
+          </p>
+          <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+            <a href="#" class="btn btn--primary">Ver la edición →</a>
+            <a href="#" class="btn btn--secondary">Cómo pedir</a>
+          </div>
+        </div>
+
+        <!-- HERO COCOA -->
+        <div class="surface-cocoa" style="padding: var(--space-8); border-radius: var(--radius-sm);">
+          <p class="caption" style="margin-bottom: var(--space-7); text-align: center;">Hero cocoa · homepage / drops signature</p>
+          <div class="lockup" style="margin-bottom: var(--space-6);">
+            <h3 class="lockup__word" style="font-size: clamp(3rem, 10vw, 6rem);">LUXE</h3>
+            <p class="lockup__caption">Cheesecake</p>
+            <hr class="lockup__rule">
+            <p class="lockup__sub">Artesanal</p>
+          </div>
+          <h3 class="display-lg" style="text-align: center; color: var(--rosa-50); margin-bottom: var(--space-5);">El primer mordisco <em style="color: var(--bronce-300);">lo cambia todo.</em></h3>
+          <p class="body" style="color: var(--paper-muted); max-width: 42ch; margin: 0 auto var(--space-6); text-align: center;">
+            Hechos a mano en Guadalajara. Edición limitada cada semana.
+          </p>
+          <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+            <a href="#" class="btn btn--primary">Ver el catálogo →</a>
+            <a href="#" class="btn btn--secondary">Eventos</a>
+          </div>
+        </div>
+
+        <!-- EVENTOS WINE -->
+        <aside class="event-cta surface-wine">
+          <p class="caption">Hero wine · landing eventos B2B</p>
+          <p class="caption" style="color: var(--bronce-300);">· Eventos · Bodas · Corporativos ·</p>
+          <h3 class="event-cta__head">Mesas de postres <em>a tu medida.</em></h3>
+          <p class="event-cta__body">
+            Diseñamos selecciones únicas desde 40 personas. Degustación opcional en taller. Respuesta en 24 horas.
+          </p>
+          <div>
+            <a href="#" class="btn btn--primary">Solicitar cotización</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       08 — VOZ
+       ============================================================ -->
+  <section class="section surface-cream" id="voz">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">08</span>
+          <span class="caption">Voz y copy</span>
+        </div>
+        <h2 class="display section-head__title" style="color: var(--ink);">Susurrar, <em>no gritar.</em></h2>
+      </header>
+
+      <div class="voice-grid">
+        <div class="voice-col voice-col--si">
+          <h3>Sí decimos</h3>
+          <ul class="voice-list">
+            <li>El primer mordisco <em>lo cambia todo.</em></li>
+            <li>Densidad untuosa. Equilibrio templado.</li>
+            <li>48 horas de reposo. Una sola pieza.</li>
+            <li>Notas de vainilla bourbon, base de speculoos, terminado con caramelo templado.</li>
+            <li>Tu pieza está en camino.</li>
+            <li>Aún no eliges tu pieza.</li>
+            <li>Un objeto de deseo, hecho a mano.</li>
+          </ul>
+        </div>
+        <div class="voice-col voice-col--no">
+          <h3>No decimos</h3>
+          <ul class="voice-list">
+            <li>¡Los mejores cheesecakes de Guadalajara!</li>
+            <li>Delicioso, cremoso, irresistible.</li>
+            <li>Pruébalo, te va a encantar.</li>
+            <li>Sabor único, calidad premium, ingredientes frescos.</li>
+            <li>Pedido confirmado exitosamente.</li>
+            <li>Tu carrito está vacío.</li>
+            <li>Endulza tu día con nosotros.</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="rule rule--dot" style="margin-top: var(--space-9);">
+
+      <h3 class="palette-group__title">Léxico aprobado · adjetivos sensoriales</h3>
+      <p class="lede" style="color: var(--ink); max-width: 64ch;">
+        Untuoso · sedoso · denso · fundente · templado · cremoso (con propósito) · tostado · ahumado · balanceado · infusionado · reposado.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       09 — APLICACIONES
+       ============================================================ -->
+  <section class="section surface-blush" id="aplicaciones">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">09</span>
+          <span class="caption">Aplicaciones</span>
+        </div>
+        <h2 class="display section-head__title">El sistema <em>en vivo.</em></h2>
+      </header>
+
+      <p class="body" style="color: var(--ink-muted); max-width: 56ch; margin-bottom: var(--space-7);">
+        Tres vistas representativas del ecommerce: catálogo en blush (default), PDP signature en cocoa (drama), landing de eventos en wine (B2B).
+      </p>
+
+      <div class="app-grid">
+
+        <!-- CATÁLOGO BLUSH -->
+        <article class="app-mock">
+          <div class="app-mock__label">Catálogo · default B2C</div>
+          <div class="app-mock__body app-mock--blush">
+            <p class="caption">· La edición ·</p>
+            <h4 class="display" style="font-size: clamp(1.5rem, 4vw, 2rem); margin: 0;">Esta semana, <em>cuatro piezas.</em></h4>
+            <div class="app-mock__photo"></div>
+            <span class="product-card__cat">Signature</span>
+            <h5 style="font-family: var(--font-display); font-style: italic; font-size: var(--text-xl); margin: 0;">Burnt Basque Bourbon</h5>
+            <p style="font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); line-height: 1.85; color: var(--ink-muted); margin: 0;">
+              Notas de vainilla bourbon, base de speculoos tostada, terminado con caramelo templado.
+            </p>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--hairline); margin-top: auto;">
+              <span class="price"><span class="price__amount">580</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PDP COCOA -->
+        <article class="app-mock">
+          <div class="app-mock__label">PDP Signature · cocoa</div>
+          <div class="app-mock__body app-mock--cocoa">
+            <div class="lockup" style="margin-bottom: var(--space-2);">
+              <h4 class="lockup__word" style="font-size: clamp(1.5rem, 4vw, 2rem); color: var(--rosa-50);">LUXE</h4>
+              <hr class="lockup__rule" style="width: 40px;">
+            </div>
+            <div class="app-mock__photo"></div>
+            <span class="product-card__cat" style="color: var(--bronce-300);">Edición limitada · 12</span>
+            <h5 style="font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 4vw, 2rem); margin: 0; color: var(--rosa-50);">Cacao 72% <em>tostado</em></h5>
+            <blockquote class="tasting-note" style="font-size: var(--text-base); margin: 0;">
+              Notas de cacao Tabasco, base de amaranto, terminado con ganache ahumada en mezquite.
+            </blockquote>
+            <fieldset class="size-selector">
+              <legend>Tamaño</legend>
+              <div class="size-selector__row">
+                <label class="size-option"><input type="radio" name="pdp-size"><span class="size-option__name">Ind.</span><span class="size-option__price">$140</span></label>
+                <label class="size-option"><input type="radio" name="pdp-size" checked><span class="size-option__name">6 p.</span><span class="size-option__price">$720</span></label>
+                <label class="size-option"><input type="radio" name="pdp-size"><span class="size-option__name">10 p.</span><span class="size-option__price">$1,180</span></label>
+                <label class="size-option"><input type="radio" name="pdp-size"><span class="size-option__name">14 p.</span><span class="size-option__price">$1,580</span></label>
+              </div>
+            </fieldset>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--hairline-paper); margin-top: auto;">
+              <span class="price"><span class="price__amount">720</span><span class="price__currency">MXN</span></span>
+              <button class="btn btn--primary">Pedir ahora →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- EVENTOS WINE -->
+        <article class="app-mock">
+          <div class="app-mock__label">Eventos B2B · wine</div>
+          <div class="app-mock__body app-mock--wine">
+            <p class="caption" style="color: var(--bronce-300);">· Eventos · Bodas · Corporativos ·</p>
+            <h4 style="font-family: var(--font-display); font-style: italic; font-size: clamp(1.75rem, 5vw, 2.5rem); margin: 0; line-height: 1.15;">
+              Mesas de postres<br><em>a tu medida.</em>
+            </h4>
+            <p style="margin: 0; color: var(--rosa-50); max-width: 36ch;">
+              Diseñamos selecciones únicas desde 40 personas. Degustación opcional. Respuesta en 24h.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--bronce-300);">
+              <li>· Desde 40 personas</li>
+              <li>· Selecciones a medida</li>
+              <li>· Degustación previa</li>
+              <li>· Jalisco + CDMX</li>
+            </ul>
+            <div style="padding-top: var(--space-4); border-top: 1px solid var(--hairline-paper); margin-top: auto;">
+              <a href="#" class="btn btn--primary">Solicitar cotización</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10 — TOKENS REFERENCE
+       ============================================================ -->
+  <section class="section surface-cocoa">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-head__eyebrow">
+          <span class="section-head__num">10</span>
+          <span class="caption">Tokens · referencia</span>
+        </div>
+        <h2 class="display section-head__title" style="color: var(--rosa-50);">Copia y <em>pega.</em></h2>
+      </header>
+
+      <pre class="code-block"><span class="cm">/* tokens.css — importar antes que cualquier otra hoja */</span>
+<span class="cm">/* &lt;link rel="stylesheet" href="/tokens.css"&gt; */</span>
+
+:root {
+  <span class="cm">/* Rosa / Nude — surface primaria */</span>
+  <span class="tk">--rosa-50</span>:  <span class="val">#FAF1EC</span>;
+  <span class="tk">--rosa-100</span>: <span class="val">#F2DDD0</span>;   <span class="cm">/* SURFACE DEFAULT */</span>
+  <span class="tk">--rosa-200</span>: <span class="val">#E5C2AF</span>;
+  <span class="tk">--rosa-300</span>: <span class="val">#D4A89B</span>;
+  <span class="tk">--rosa-400</span>: <span class="val">#B58B74</span>;
+  <span class="tk">--rosa-500</span>: <span class="val">#A66A5A</span>;   <span class="cm">/* terracota acento */</span>
+
+  <span class="cm">/* Bronce — signature, bridge entre modos */</span>
+  <span class="tk">--bronce-300</span>: <span class="val">#D4B98C</span>;  <span class="cm">/* highlight dark */</span>
+  <span class="tk">--bronce-500</span>: <span class="val">#A88A5C</span>;  <span class="cm">/* SIGNATURE logo caption */</span>
+  <span class="tk">--bronce-700</span>: <span class="val">#6E5632</span>;
+
+  <span class="cm">/* Ink — negro cálido */</span>
+  <span class="tk">--ink</span>:     <span class="val">#1A1414</span>;     <span class="cm">/* wordmark LUXE */</span>
+  <span class="tk">--ink-950</span>: <span class="val">#14090A</span>;     <span class="cm">/* dark mode surface */</span>
+
+  <span class="cm">/* Wine — exclusivo eventos B2B */</span>
+  <span class="tk">--wine</span>: <span class="val">#5C1F2A</span>;
+
+  <span class="cm">/* Typography */</span>
+  <span class="tk">--font-display</span>: <span class="val">'Bodoni Moda', serif</span>;
+  <span class="tk">--font-body</span>:    <span class="val">'Manrope', sans-serif</span>;
+  <span class="tk">--font-mono</span>:    <span class="val">'JetBrains Mono', mono</span>;
+}</pre>
+
+      <p class="body" style="color: var(--paper-muted); margin-top: var(--space-5); max-width: 56ch;">
+        Esto es el subset. La versión completa con todas las tokens, escalas, espacios, sombras y motion está en <code style="font-family: var(--font-mono); color: var(--bronce-300);">tokens.css</code>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="foot surface-cocoa">
+    <div class="container">
+
+      <div style="display: grid; gap: var(--space-5); max-width: 480px;">
+        <p class="caption">Newsletter · Edición semanal</p>
+        <p class="lede" style="color: var(--rosa-50);">
+          <em>Una pieza nueva cada semana. Pre-orden 48h antes del público.</em>
+        </p>
+        <form style="display: flex; gap: var(--space-2); flex-wrap: wrap;" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="tu@correo.com" aria-label="Email" style="
+            flex: 1; min-width: 220px;
+            font-family: var(--font-body);
+            font-size: 16px;
+            min-height: 44px;
+            padding: var(--space-3);
+            background: transparent;
+            color: var(--rosa-50);
+            border: 1px solid var(--hairline-paper);
+            border-radius: var(--radius-sm);
+          ">
+          <button type="submit" class="btn btn--primary">Suscribirme</button>
+        </form>
+      </div>
+
+      <div class="foot__wordmark" aria-hidden="true">LUXE</div>
+
+      <div class="foot__sig">
+        <span>Luxe Cheesecake · GDL 2026</span>
+        <span>Sistema de diseño v2.0 · Carlos Calderón</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      // IIFE — sin deps externas
+      const links = document.querySelectorAll('.nav__list a');
+      const sections = [...document.querySelectorAll('section[id], header[id]')];
+
+      const onScroll = () => {
+        const y = window.scrollY + 120;
+        let active = sections[0]?.id;
+        for (const s of sections) {
+          if (s.offsetTop <= y) active = s.id;
+        }
+        links.forEach(a => {
+          const isActive = a.getAttribute('href') === '#' + active;
+          a.style.color = isActive ? 'var(--bronce-600)' : '';
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>
