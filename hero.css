@@ -748,6 +748,7 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
   gap: var(--space-5);
 }
 .carousel__viewport {
+  position: relative;
   overflow: hidden;
   width: 100%;
 }
@@ -771,39 +772,56 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
   .carousel__track .card { flex: 0 0 calc(86% - 10px); }
 }
 
-/* Barra de controles: prev — counter/bar — next */
+/* Barra inferior: solo counter + barra de progreso */
 .carousel__controls {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: var(--space-4);
 }
+.carousel__info { width: 100%; }
 
-/* Flechas */
+/* Flechas — flotantes sobre las fotos */
 .carousel__btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: transparent;
-  border: 1px solid var(--hero-rule);
+  background: rgba(var(--hero-tint), 0.65);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(212, 185, 140, 0.35);
   color: var(--hero-fg);
   cursor: pointer;
-  flex-shrink: 0;
   transition:
     background var(--duration-base) var(--ease-out),
     border-color var(--duration-base) var(--ease-out),
     color var(--duration-base) var(--ease-out),
-    opacity var(--duration-base) var(--ease-out);
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
 }
 .carousel__btn svg { display: block; }
+.carousel__btn--prev {
+  left: var(--space-4);
+  transform: translateY(-50%);
+}
+.carousel__btn--next {
+  right: var(--space-4);
+  transform: translateY(-50%);
+}
 .carousel__btn:not(:disabled):hover {
   background: var(--hero-accent);
   border-color: var(--hero-accent);
-  color: var(--hero-bg);
+  color: var(--rosa-50);
+  transform: translateY(-50%) scale(1.08);
 }
-.carousel__btn:disabled { opacity: 0.2; cursor: default; }
+.carousel__btn:disabled {
+  opacity: 0.18;
+  cursor: default;
+}
 
 /* Counter + progress bar */
 .carousel__info {

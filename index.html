@@ -224,6 +224,11 @@
 
   <div class="carousel" role="region" aria-label="Catálogo de piezas">
     <div class="carousel__viewport">
+      <button class="carousel__btn carousel__btn--prev" aria-label="Pieza anterior" disabled>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M11 13.5L6.5 9L11 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <div class="carousel__track">
 
         <article class="card">
@@ -318,14 +323,14 @@
         </article>
 
       </div>
+      <button class="carousel__btn carousel__btn--next" aria-label="Pieza siguiente">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M7 4.5L11.5 9L7 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
 
     <div class="carousel__controls">
-      <button class="carousel__btn carousel__btn--prev" aria-label="Pieza anterior" disabled>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-          <path d="M11 13.5L6.5 9L11 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
       <div class="carousel__info">
         <div class="carousel__counter" aria-live="polite" aria-atomic="true">
           <span class="carousel__counter-current">01</span>
@@ -334,11 +339,6 @@
         </div>
         <div class="carousel__bar"><div class="carousel__bar-fill"></div></div>
       </div>
-      <button class="carousel__btn carousel__btn--next" aria-label="Pieza siguiente">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-          <path d="M7 4.5L11.5 9L7 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
     </div>
   </div>
 </section>
