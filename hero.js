@@ -151,22 +151,67 @@
     }, { passive: true });
   }
 
-  // ---- scroll-reveal for catalog cards ---------------------------
+  // ---- scroll-reveal — observa el carousel, revela todas las cards ----
   const revealCards = document.querySelectorAll('.card');
   if (revealCards.length && 'IntersectionObserver' in window) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          obs.unobserve(entry.target);
-        }
-      });
+    const revealTarget = document.querySelector('.carousel') || revealCards[0];
+    const revealObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        revealCards.forEach((card, i) => {
+          card.style.setProperty('--reveal-delay', `${Math.min(i, 3) * 90}ms`);
+          card.classList.add('revealed');
+        });
+        revealObs.disconnect();
+      }
     }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    revealObs.observe(revealTarget);
+  }
 
-    revealCards.forEach((card, i) => {
-      card.style.setProperty('--reveal-delay', `${i * 90}ms`);
-      obs.observe(card);
-    });
+  // ---- carousel -------------------------------------------------
+  const carouselEl = document.querySelector('.carousel');
+  if (carouselEl) {
+    const track   = carouselEl.querySelector('.carousel__track');
+    const cards   = [...track.querySelectorAll('.card')];
+    const btnPrev = carouselEl.querySelector('.carousel__btn--prev');
+    const btnNext = carouselEl.querySelector('.carousel__btn--next');
+    const curEl   = carouselEl.querySelector('.carousel__counter-current');
+    const barFill = carouselEl.querySelector('.carousel__bar-fill');
+    const total   = cards.length;
+    let pos = 0;
+
+    function visible() {
+      return window.innerWidth >= 1100 ? 4 : window.innerWidth >= 600 ? 2 : 1;
+    }
+
+    function cardStep() {
+      const gap = parseFloat(getComputedStyle(track).gap) || 20;
+      const w   = cards[0] ? cards[0].getBoundingClientRect().width : 0;
+      if (w) return w + gap;
+      const v = visible();
+      return (track.parentElement.offsetWidth - gap * (v - 1)) / v + gap;
+    }
+
+    function refresh() {
+      const v   = visible();
+      const max = Math.max(0, total - v);
+      pos = Math.min(pos, max);
+      track.style.transform = `translateX(${-pos * cardStep()}px)`;
+      btnPrev.disabled = pos === 0;
+      btnNext.disabled = pos >= max;
+      if (curEl)   curEl.textContent = String(pos + 1).padStart(2, '0');
+      if (barFill) barFill.style.width = `${max === 0 ? 100 : (pos / max) * 100}%`;
+    }
+
+    btnPrev.addEventListener('click', () => { pos = Math.max(0, pos - 1); refresh(); });
+    btnNext.addEventListener('click', () => { pos = Math.min(total - visible(), pos + 1); refresh(); });
+
+    let rTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(rTimer);
+      rTimer = setTimeout(refresh, 150);
+    }, { passive: true });
+
+    refresh();
   }
 
 })();

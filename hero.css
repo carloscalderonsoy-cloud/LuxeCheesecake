@@ -739,16 +739,103 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
   color: var(--hero-accent);
 }
 
-.thisweek__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* ============================================================
+   CAROUSEL — reemplaza el grid estático de cuatro columnas
+============================================================ */
+.carousel {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-5);
 }
+.carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+.carousel__track {
+  display: flex;
+  gap: var(--space-5);
+  transition: transform 520ms var(--ease-out);
+  will-change: transform;
+}
+
+/* 4 cards en desktop */
+.carousel__track .card {
+  flex: 0 0 calc(25% - 18px);
+  min-width: 0;
+  margin-top: 0 !important;
+}
 @media (max-width: 1100px) {
-  .thisweek__grid { grid-template-columns: repeat(2, 1fr); }
+  .carousel__track .card { flex: 0 0 calc(50% - 12px); }
 }
 @media (max-width: 600px) {
-  .thisweek__grid { grid-template-columns: 1fr; }
+  .carousel__track .card { flex: 0 0 calc(86% - 10px); }
+}
+
+/* Barra de controles: prev — counter/bar — next */
+.carousel__controls {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Flechas */
+.carousel__btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--hero-rule);
+  color: var(--hero-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out);
+}
+.carousel__btn svg { display: block; }
+.carousel__btn:not(:disabled):hover {
+  background: var(--hero-accent);
+  border-color: var(--hero-accent);
+  color: var(--hero-bg);
+}
+.carousel__btn:disabled { opacity: 0.2; cursor: default; }
+
+/* Counter + progress bar */
+.carousel__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.carousel__counter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hero-fg-soft);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.carousel__counter-current {
+  font-size: var(--text-base);
+  color: var(--hero-accent);
+}
+.carousel__counter-sep { opacity: 0.45; }
+.carousel__bar {
+  height: 1px;
+  background: var(--hero-rule);
+  overflow: hidden;
+}
+.carousel__bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--hero-accent);
+  transition: width 400ms var(--ease-out);
 }
 
 .card {
@@ -766,6 +853,7 @@ body[data-mode="wine"] .hero__watermark { opacity: 0.06; }
   transform: translateY(-2px);
   border-color: var(--hero-accent);
 }
+.carousel .card:hover { transform: none; }
 .card__img {
   aspect-ratio: 4/5;
   overflow: hidden;
@@ -1138,16 +1226,8 @@ body[data-mode="blush"] .thisweek__num { opacity: 0.06; }
 
 
 /* ============================================================
-   CATALOG CARDS — stagger editorial + scroll-reveal
-   Even cards bajan 48px → rompe la cuadrícula simétrica
+   CATALOG CARDS — scroll-reveal
 ============================================================ */
-@media (min-width: 901px) {
-  .thisweek__grid .card:nth-child(2),
-  .thisweek__grid .card:nth-child(4) {
-    margin-top: 48px;
-  }
-}
-
 /* Scroll-reveal — solo activo cuando JS cargó (.js-ready en body) */
 .js-ready .card {
   --reveal-delay: 0ms;
